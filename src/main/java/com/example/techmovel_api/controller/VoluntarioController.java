@@ -33,7 +33,7 @@ public class VoluntarioController {
         return voluntarioRepository.findAll();
     }
 
-    @GetMapping("/buscar/{nome}")
+    @GetMapping("/buscar/{nome_voluntario}")
     public List<Voluntario> buscarNomeVoluntario(@PathVariable String nome_voluntario) {
         return voluntarioRepository.findByNome(nome_voluntario);
     }
@@ -51,6 +51,8 @@ public class VoluntarioController {
         m_old_voluntario.setNome(voluntario_info_nova.getNome());
         m_old_voluntario.setCapitulo(voluntario_info_nova.getCapitulo());
         m_old_voluntario.setArea_de_atuacao(voluntario_info_nova.getArea_de_atuacao());
+
+        voluntarioRepository.save(m_old_voluntario);
     }
 
     @DeleteMapping ("/delete/{id}")
