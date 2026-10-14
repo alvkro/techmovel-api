@@ -1,10 +1,13 @@
 package com.example.techmovel_api.controller;
 
-import com.example.techmovel_api.repository.EscolaRepository;
+import com.example.techmovel_api.service.EscolaService;
+
+import lombok.RequiredArgsConstructor;
+
+import com.example.techmovel_api.dto.EscolaRecord;
 import com.example.techmovel_api.model.Escola;
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,48 +17,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
 @RestController
 @RequestMapping("/escola")
+@RequiredArgsConstructor 
 public class EscolaController {
-    @Autowired // Para nao dar um new no repository
-    private EscolaRepository escolaRepository;
+    private EscolaService escolaService;
 
     @PostMapping("/cadastrar")
-    public Escola cadastrarEscola(@RequestBody Escola nova_escola) {
-        return escolaRepository.save(nova_escola);
+    public Escola cadastrarEscola(@RequestBody EscolaRecord nova_escola) {
+        return escolaService.cadastrarEscola(nova_escola);
     }
 
-    @GetMapping("busca/allEscolas")
+    @GetMapping("allEscolas")
     public List<Escola> buscarEscola() {
-        return escolaRepository.findAll();
+        return escolaService.buscarEscola();
     }
     
-    @GetMapping("busca/{id}")
-    public Optional<Escola> buscarEscolaNome(@PathVariable Long id) {
-        return escolaRepository.findById(id);
+    @GetMapping("{id}")
+    public Optional<Escola> buscarEscolaId(@PathVariable Long id) {
+        return escolaService.buscarEscolaId(id);
     }
     
-    @GetMapping("/busca/{nome}")
-    public List<Escola> getMethodName(@PathVariable String nome) {
-        return escolaRepository.findByNome(nome);
+    @GetMapping("/{nome}")
+    public List<Escola> buscarEscolaNome(@PathVariable String nome) {
+        return escolaService.buscarEscolaNome(nome);
     }
 
     @PutMapping("update/{id}")
-    public void atualizarDadosEscola(@PathVariable Long id, @RequestBody Escola dadosNovosEscola) {
-        Optional<Escola> old_escola = escolaRepository.findById(id);
-        old_escola.get().setNome(dadosNovosEscola.getNome());
-        old_escola.get().setEndereco(dadosNovosEscola.getEndereco());
-        old_escola.get().setContatoDiretoria(dadosNovosEscola.getContatoDiretoria());
-
-        escolaRepository.save(old_escola.get());
+    public void atualizarDadosEscola(@PathVariable Long id, @RequestBody EscolaRecord dadosNovosEscola) {
+        escolaService.atualizarDadosEscola(id, dadosNovosEscola);
     }
 
     @DeleteMapping("delete/{id}")
     public void deletarEscola(@PathVariable Long id) {
-        // TODO: Fazer uma verificação do ID (boa prática)
-        escolaRepository.deleteById(id); 
+        escolaService.deletarEscola(id);
     }
 }
