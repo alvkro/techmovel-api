@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,4 +48,7 @@ public class Visita {
         inverseJoinColumns = @JoinColumn(name = "voluntario_id") // 3. Coluna dessa tabela que aponta pro OUTRO LADO (Voluntario)
     )
     private List<Voluntario> voluntarios = new ArrayList(); // Safety-convert
+
+    @OneToMany(mappedBy = "materiais")
+    List<Material> materiais = new ArrayList<>();
 }
