@@ -2,12 +2,11 @@ package com.example.techmovel_api.controller;
 
 import com.example.techmovel_api.service.EscolaService;
 
-import lombok.RequiredArgsConstructor;
-
 import com.example.techmovel_api.dto.EscolaRecord;
 import com.example.techmovel_api.model.Escola;
 import java.util.*;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +18,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/escola")
-@RequiredArgsConstructor 
+@RequiredArgsConstructor
 public class EscolaController {
-    private EscolaService escolaService;
+    private final EscolaService escolaService;
 
     @PostMapping("/cadastrar")
     public Escola cadastrarEscola(@RequestBody EscolaRecord nova_escola) {

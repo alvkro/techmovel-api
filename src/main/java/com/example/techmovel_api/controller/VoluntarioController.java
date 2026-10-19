@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController 
 @RequiredArgsConstructor 
 public class VoluntarioController {
-    private VoluntarioService voluntarioService;
+    private final VoluntarioService voluntarioService;
 
     @PostMapping("/cadastro")
     public Voluntario cadastrarVoluntario(@RequestBody VoluntarioRecord novo_voluntario) {

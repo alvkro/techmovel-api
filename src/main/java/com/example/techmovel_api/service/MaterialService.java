@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service 
 @RequiredArgsConstructor 
 public class MaterialService {
-    private MaterialRepository materialRepository;
+    private final MaterialRepository materialRepository;
 
     @Transactional(readOnly = true)
     public List<Material> allMateriais() {

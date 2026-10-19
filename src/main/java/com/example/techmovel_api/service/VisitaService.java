@@ -22,10 +22,10 @@ import lombok.RequiredArgsConstructor;
 @Service 
 @RequiredArgsConstructor 
 public class VisitaService {
-    private VisitaRepository visitaRepository;
-    private EscolaRepository escolaRepository;
-    private VoluntarioRepository voluntarioRepository;
-    private MaterialRepository materialRepository;
+    private final VisitaRepository visitaRepository;
+    private final EscolaRepository escolaRepository;
+    private final VoluntarioRepository voluntarioRepository;
+    private final MaterialRepository materialRepository;
 
     @Transactional 
     public List<Visita> allVisitas() {

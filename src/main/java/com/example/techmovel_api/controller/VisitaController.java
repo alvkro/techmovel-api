@@ -1,6 +1,8 @@
 package com.example.techmovel_api.controller;
 import com.example.techmovel_api.service.VisitaService;
 
+import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/visitas")
+@RequiredArgsConstructor 
 public class VisitaController {
-    private VisitaService visitaService;
+    private final VisitaService visitaService;
 
     @GetMapping("/allVisitas")
     public List<Visita> allVisitas() {

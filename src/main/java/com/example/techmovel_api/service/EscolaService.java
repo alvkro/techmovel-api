@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor 
 public class EscolaService {
-    private EscolaRepository escolaRepository;
+    private final EscolaRepository escolaRepository;
 
     @Transactional 
     public Escola cadastrarEscola(EscolaRecord nova_escola) {

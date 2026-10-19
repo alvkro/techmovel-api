@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor 
 public class VoluntarioService {
-    private VoluntarioRepository voluntarioRepository;
+    private final VoluntarioRepository voluntarioRepository;
 
     @Transactional 
     public Voluntario cadastrarVoluntario(VoluntarioRecord novo_voluntario) {
