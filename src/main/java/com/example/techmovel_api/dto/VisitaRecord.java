@@ -1,6 +1,5 @@
 package com.example.techmovel_api.dto;
 
-import com.example.techmovel_api.model.Material;
 import com.example.techmovel_api.model.enums.*;
 
 import java.util.List;
